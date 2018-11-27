@@ -66,12 +66,12 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> job : allJobs) {
 
-            String aValue = row.get(column);
+            String valueCheck = job.toString().toLowerCase();
 
-            if (aValue.contains(value)) {
-                jobs.add(row);
+            if(valueCheck.contains(value.toLowerCase())) {
+                jobs.add(job);
             }
         }
 
