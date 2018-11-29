@@ -3,9 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-/**
- * Created by LaunchCode
- */
+
 public class TechJobs {
 
     private static Scanner in = new Scanner(System.in);
@@ -58,10 +56,10 @@ public class TechJobs {
                 // What is their search term?
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
-
-
+                searchTerm = searchTerm.toLowerCase();
                 if (searchField.equals("all")) {
                     System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -111,14 +109,17 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         System.out.println("printJobs is not implemented yet");
-        for (HashMap<String, String> job : someJobs) {
-            StringBuilder ji = new StringBuilder();
-            ji.append("\n*****\n");
-            for (Map.Entry<String, String> jobColumn : job.entrySet()) {
-                ji.append(jobColumn.getKey() + ": " + jobColumn.getValue() + "\n");
-            }
-            System.out.println(ji + "*****");
+        if (someJobs.isEmpty()) {
+            System.out.println("Invalid entry");
         }
-        System.out.println("There are no matching results.");
+        else {
+            for (HashMap<String, String> jobs : someJobs) {
+                System.out.println("***** \n");
+                for (Map.Entry job : jobs.entrySet()) {
+                    System.out.println(job.getKey() + " : " + job.getValue());
+                }
+            }
+        }
+        System.out.println("*****");
     }
 }
